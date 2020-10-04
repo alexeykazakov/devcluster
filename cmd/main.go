@@ -8,6 +8,8 @@ import (
 	"syscall"
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
+
 	"github.com/codeready-toolchain/devcluster/pkg/mongodb"
 
 	"github.com/codeready-toolchain/devcluster/pkg/cluster"
@@ -26,6 +28,7 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+	cleanupDatabase()
 	defer disconnect()
 
 	cluster.InitDefaultClusterService(config)
@@ -56,6 +59,19 @@ func main() {
 	}()
 
 	gracefulShutdown(srv.HTTPServer(), srv.Config().GetGracefulTimeout())
+}
+
+func cleanupDatabase() {
+	names, err := mongodb.Devcluster().ListCollectionNames(context.Background(), bson.D{})
+	if err != nil {
+		panic(err)
+	}
+	for _, name := range names {
+		err = mongodb.Devcluster().Collection(name).Drop(context.Background())
+		if err != nil {
+			panic(err)
+		}
+	}
 }
 
 func gracefulShutdown(hs *http.Server, timeout time.Duration) {

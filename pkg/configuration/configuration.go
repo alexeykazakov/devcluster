@@ -106,7 +106,7 @@ const (
 
 	varMongodbConnectionString = "mongodb.connection_string"
 	varMongodbDatabase         = "mongodb.database"
-	DefaultMongodbDatabase     = "devcluster"
+	DefaultMongodbDatabase     = "devcluster-dummy"
 )
 
 // Config encapsulates the Viper configuration which stores the

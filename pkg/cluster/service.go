@@ -5,6 +5,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/codeready-toolchain/devcluster/pkg/icmock"
+
 	"github.com/codeready-toolchain/devcluster/pkg/auth"
 
 	devclustererr "github.com/codeready-toolchain/devcluster/pkg/errors"
@@ -77,7 +79,7 @@ type ClusterService struct {
 
 func InitDefaultClusterService(config ibmcloud.Configuration) {
 	DefaultClusterService = &ClusterService{
-		IbmCloudClient: ibmcloud.NewClient(config),
+		IbmCloudClient: icmock.NewMockIBMCloudClient(),
 		Config:         config,
 	}
 }
