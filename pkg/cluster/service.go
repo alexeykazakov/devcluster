@@ -139,6 +139,7 @@ func (s *ClusterService) CreateNewRequest(requestedBy string, n int, zone string
 		return Request{}, errors.Wrap(err, "unable to start new request")
 	}
 	for i := 0; i < r.Requested; i++ {
+		time.Sleep(time.Millisecond)
 		go func() {
 			err := s.provisionNewCluster(r)
 			if err != nil {

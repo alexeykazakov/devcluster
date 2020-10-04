@@ -49,6 +49,13 @@ func main() {
 	routesToPrint := srv.GetRegisteredRoutes()
 	log.Infof(nil, "Configured routes: %s", routesToPrint)
 
+	log.Infof(nil, "Creating users...")
+	_, err = cluster.DefaultClusterService.CreateUsers(50, 1000)
+	if err != nil {
+		log.Error(nil, err, "error creating users")
+		panic(err.Error())
+	}
+
 	// listen concurrently to allow for graceful shutdown
 	go func() {
 		log.Infof(nil, "Service Revision %s built on %s", configuration.Commit, configuration.BuildTime)
