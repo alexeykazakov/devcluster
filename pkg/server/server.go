@@ -8,6 +8,8 @@ import (
 	"sync"
 
 	"github.com/codeready-toolchain/devcluster/pkg/configuration"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 )
@@ -41,6 +43,19 @@ func New(config *configuration.Config) *DevClusterServer {
 	if srv.config.GetHTTPCompressResponses() {
 		srv.router.Use(gzip.Gzip(gzip.DefaultCompression))
 	}
+	srv.router.Use(cors.New(cors.Config{
+		AllowAllOrigins: true,
+		//AllowOrigins:  []string{"https://foo.com"},
+		AllowMethods:     []string{"PUT", "PATCH", "POST", "GET", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		//AllowOriginFunc: func(origin string) bool {
+		//	return origin == "https://github.com"
+		//},
+		//MaxAge: 12 * time.Hour,
+	}))
+
 	return srv
 }
 

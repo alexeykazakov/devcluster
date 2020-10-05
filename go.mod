@@ -6,9 +6,9 @@ require (
 	github.com/cheekybits/is v0.0.0-20150225183255-68e9c0620927 // indirect
 	github.com/codeready-toolchain/toolchain-common v0.0.0-20200827095351-b2cb9e622a9a
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/gzip v0.0.1
-	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.4.0
+	github.com/gin-gonic/gin v1.5.0
 	github.com/go-logr/logr v0.1.0
 	github.com/gofrs/uuid v3.3.0+incompatible
 	github.com/matryer/resync v0.0.0-20161211202428-d39c09a11215
@@ -18,11 +18,9 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.4.0
 	github.com/stretchr/testify v1.5.1
-	github.com/ugorji/go v1.1.7 // indirect
 	go.mongodb.org/mongo-driver v1.1.2
 	gopkg.in/h2non/gock.v1 v1.0.14
 	gopkg.in/square/go-jose.v2 v2.3.1
-	gotest.tools v2.2.0+incompatible
 	k8s.io/apimachinery v0.18.3
 	sigs.k8s.io/controller-runtime v0.6.0
 )
