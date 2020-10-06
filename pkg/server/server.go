@@ -47,7 +47,7 @@ func New(config *configuration.Config) *DevClusterServer {
 		AllowAllOrigins: true,
 		//AllowOrigins:  []string{"https://foo.com"},
 		AllowMethods:     []string{"PUT", "PATCH", "POST", "GET", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin"},
+		AllowHeaders:     []string{"Origin, Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		//AllowOriginFunc: func(origin string) bool {
